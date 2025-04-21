@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h1>Créer une nouvelle série</h1>
+    
+    <form action="{{ url_for('create_series') }}" method="post">
+        <div class="form-group">
+            <label for="series_name">Nom de la série :</label>
+            <input type="text" id="series_name" name="series_name" required>
+        </div>
+
+        {% if unassigned_books %}
+            <div class="form-group">
+                <label>Livres disponibles ({{ unassigned_books|length }}):</label>
+                <div class="books-selection">
+                    {% for book in unassigned_books %}
+                    <div class="book-item">
+                        <input type="checkbox" id="book_{{ loop.index }}" 
+                               name="books[]" value="{{ book }}">
+                        <label for="book_{{ loop.index }}">{{ book }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            <p class="info">Aucun livre non classé disponible</p>
+        {% endif %}
+
+        <div class="form-actions">
+            <button type="submit" class="btn-primary">Créer la série</button>
+            <a href="{{ url_for('index') }}" class="btn-secondary">Annuler</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

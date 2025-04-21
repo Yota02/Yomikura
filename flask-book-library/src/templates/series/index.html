@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="series-list">
+    
+    
+
+    <h2>Séries disponibles</h2>
+    {% if series %}
+        <ul>
+        {% for serie in series %}
+            <li>
+                <a href="{{ url_for('view_series', series_id=serie.id) }}">
+                    {{ serie.title }}
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucune série disponible pour le moment.</p>
+    {% endif %}
+
+    <div class="header-actions">
+        <a href="{{ url_for('new_series') }}" class="btn-new">Nouvelle série</a>
+    </div>
+</div>
+{% endblock %}

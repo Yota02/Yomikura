@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Liste des Livres</title>
+</head>
+<body>
+    <header>
+        <h1>Liste des Livres</h1>
+        <a href="{{ url_for('series.index') }}">Voir les Séries</a>
+    </header>
+    <main>
+        <ul>
+            {% for book in books %}
+                <li>
+                    <a href="{{ url_for('books.view', book_id=book.id) }}">{{ book.title }}</a> par {{ book.author }}
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
+</body>
+</html>
