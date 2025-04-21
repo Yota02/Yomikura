@@ -9,8 +9,7 @@ app = Flask(__name__)
 app.secret_key = "5a8cd760bac219525b6c61addcb935d2ab79b556d47030651062d410e75d6623"
 
 # Configuration
-BOOKS_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static', 'books')
-print(f"Dossier des livres : {BOOKS_FOLDER}")  # Débogage
+BOOKS_FOLDER = os.path.join('static', 'books')
 if not os.path.exists(BOOKS_FOLDER):
     os.makedirs(BOOKS_FOLDER)
 file_handler = FileHandler(BOOKS_FOLDER)
